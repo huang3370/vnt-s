@@ -9,8 +9,8 @@ cd vnts-x86_64-unknown-linux-musl-v1.2.12.tar.gz
 # 提示用户输入自定义参数
 echo "自定义虚拟IP默认直接回车下一步-例如-g空格192.168.x.x："
 read ip
-#echo "输入-s空格IP:端口使用官方服务器直接回车下一步："
-#read fwq
+echo "开启--wg空格私密不使用直接下一步："
+read wg
 
 # 创建一个服务文件
 cat <<EOF > /etc/systemd/system/vnts-cli.service
@@ -20,7 +20,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/root/vnts $ip
+ExecStart=/root/vnts $ip $wg
 
 Restart=always
 User=root
